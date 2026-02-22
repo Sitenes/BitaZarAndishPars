@@ -1,0 +1,680 @@
+@{
+    ViewData["Title"] = "Mohammad Amin Aghakabiri — Resume";
+    Layout = "_Layout";
+}
+<link rel="alternate" hreflang="fa" href="/home/aghakabiriresume" />
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+        direction: ltr;
+        text-align: left;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #1a3a5c 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        border-bottom: 2.5px solid var(--accent-color);
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        position: absolute;
+        left: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: var(--accent-color);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-left: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid var(--accent-color);
+        color: var(--accent-color);
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active current">Aghakabiri Resume</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>Eng. Mohammad Amin Aghakabiri — Resume</h1>
+        <p>Eng. Aghakabiri · Technical Director &amp; CTO</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header -->
+        <div class="resume-header-card mb-4">
+            <a href="/home/aghakabiriresume" class="resume-lang-switch"><i class="bi bi-globe"></i> نسخه فارسی</a>
+            <div class="row align-items-center gy-4">
+                <div class="col-auto">
+                    <img src="/assets/img/person/aghakabiri.jpg" alt="Mohammad Amin Aghakabiri" class="resume-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                </div>
+                <div class="col">
+                    <div class="resume-name">Eng. Mohammad Amin Aghakabiri</div>
+                    <span class="resume-title-badge"><i class="bi bi-building me-1"></i> Eng. Aghakabiri · Technical
+                        Director &amp; CTO</span>
+                        <div class="mt-2">
+                            <a href="mailto:a.aghakabiri@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                a.aghakabiri@gmail.com</a>
+                                <a href="tel:+989013348988" class="contact-chip"><i class="bi bi-telephone"></i> +98 901 334
+                                    8988</a>
+                                    <span class="contact-chip"><i class="bi bi-geo-alt"></i> Isfahan, Iran</span>
+                                    <a href="https://github.com/MaminMA" target="_blank" class="contact-chip"><i
+                                        class="bi bi-github"></i> MaminMA</a>
+                                        <a href="https://linkedin.com/in/mohammad-amin-aghakabiri" target="_blank"
+                                           class="contact-chip"><i class="bi bi-linkedin"></i> mohammad-amin-aghakabiri</a>
+                                        <span class="contact-chip"><i class="bi bi-telegram"></i> @@MohamadAminA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> About Me</div>
+                            <p class="mb-0" style="line-height:2;font-size:1rem">
+                                A passionate <strong>Full Stack Developer</strong> and web engineer specializing in designing and
+                                implementing
+                                robust software systems with <strong>ASP.NET</strong>, <strong>C#</strong>, and <strong>C++</strong>.
+                                Proficient in clean, maintainable code following <strong>Clean Architecture</strong> and modern software
+                                engineering principles. Hands-on experience with <strong>SQL Server</strong>,
+                                <strong>PostgreSQL</strong>,
+                                <strong>MongoDB</strong>, and <strong>Elasticsearch</strong>. Expert in <strong>Web Scraping</strong>,
+                                <strong>Microservice Architecture</strong>, and cloud infrastructure integration. Highly motivated
+                                team player with a strong drive for continuous learning and delivering scalable, production-ready
+                                solutions.
+                            </p>
+                        </div>
+
+                        <!-- Work Experience -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> Work Experience</div>
+
+                            <div class="exp-card">
+                                <div class="exp-company">Parsah Azin Mobin Co.</div>
+                                <div class="exp-role">Senior Backend Developer</div>
+                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2023 – 2025</span>
+                                <ul class="exp-bullets mt-2">
+                                    <li>Designed and implemented distributed systems based on <strong>Microservice Architecture</strong>
+                                        and <strong>Clean Architecture</strong></li>
+                                        <li>Applied <strong>CQRS</strong> and <strong>MediatR</strong> patterns for command/query separation
+                                        </li>
+                                        <li>Built inter-service communication with <strong>gRPC</strong> and <strong>RabbitMQ</strong> as
+                                            message broker</li>
+                                            <li>Worked with <strong>PostgreSQL</strong>, <strong>MongoDB</strong>, and <strong>Redis</strong>
+                                                for data persistence and caching</li>
+                                                <li>Implemented advanced structured logging with <strong>Serilog</strong> &amp; <strong>Seq</strong>
+                                                </li>
+                                                <li>Developed <strong>File Encryption</strong> and web penetration security mechanisms</li>
+                                                <li>Automated scientific data scraping with <strong>Selenium</strong></li>
+                                            </ul>
+                                            <div class="exp-tags">
+                                                <span class="exp-tag">Microservice Architecture</span>
+                                                <span class="exp-tag">Clean Architecture</span>
+                                                <span class="exp-tag">CQRS</span>
+                                                <span class="exp-tag">MediatR</span>
+                                                <span class="exp-tag">gRPC</span>
+                                                <span class="exp-tag">PostgreSQL</span>
+                                                <span class="exp-tag">MongoDB</span>
+                                                <span class="exp-tag">Redis</span>
+                                                <span class="exp-tag">RabbitMQ</span>
+                                                <span class="exp-tag">Serilog · Seq</span>
+                                                <span class="exp-tag">File Encryption</span>
+                                                <span class="exp-tag">Web Security</span>
+                                                <span class="exp-tag">Selenium</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="exp-card">
+                                            <div class="exp-company">Bita Zar Andish Pars Co. (Bizapp)</div>
+                                            <div class="exp-role">Junior Backend Developer — ASP.NET</div>
+                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2021 – 2023</span>
+                                            <ul class="exp-bullets mt-2">
+                                                <li>Developed and maintained web applications using <strong>ASP.NET Core</strong></li>
+                                                <li>Designed complex queries with <strong>SQL Server</strong> and <strong>EF Core</strong> ORM</li>
+                                                <li>Integrated <strong>Elasticsearch</strong> as the full-text search engine</li>
+                                                <li>Implemented a real-time messaging system with <strong>SignalR</strong></li>
+                                                <li>Performed full production deployment on <strong>Windows Server</strong></li>
+                                            </ul>
+                                            <div class="exp-tags">
+                                                <span class="exp-tag">ASP.NET Core</span>
+                                                <span class="exp-tag">SQL Server</span>
+                                                <span class="exp-tag">ElasticSearch</span>
+                                                <span class="exp-tag">EF Core</span>
+                                                <span class="exp-tag">SignalR</span>
+                                                <span class="exp-tag">Realtime Chat</span>
+                                                <span class="exp-tag">Windows Server Deploy</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="exp-card">
+                                            <div class="exp-company">APA Association — University of Isfahan</div>
+                                            <div class="exp-role">FullStack Developer — Cyber Range "Naghsh Mojaz"</div>
+                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2023</span>
+                                            <ul class="exp-bullets mt-2">
+                                                <li>Led full-stack development of the <strong>Naghsh Mojaz Cyber Range</strong> project</li>
+                                                <li>Built backend with <strong>ASP.NET</strong> and frontend with <strong>Angular</strong></li>
+                                                <li>Implemented <strong>Microservice</strong> architecture with <strong>PostgreSQL</strong></li>
+                                                <li>Developed web penetration security scenarios for educational use</li>
+                                            </ul>
+                                            <div class="exp-tags">
+                                                <span class="exp-tag">ASP.NET</span>
+                                                <span class="exp-tag">Angular</span>
+                                                <span class="exp-tag">Microservice Architecture</span>
+                                                <span class="exp-tag">PostgreSQL</span>
+                                                <span class="exp-tag">Web Security</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="exp-card mb-0">
+                                            <div class="exp-company">Ideh Tarh Farzanegan Co.</div>
+                                            <div class="exp-role">Freelance FullStack Developer</div>
+                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                            <ul class="exp-bullets mt-2">
+                                                <li>Designed and developed a full web platform using <strong>ASP.NET Core MVC</strong></li>
+                                                <li>Managed <strong>SQL Server</strong> database and performed live host deployment</li>
+                                                <li>Applied <strong>SEO</strong> best practices to improve search engine visibility</li>
+                                            </ul>
+                                            <div class="exp-tags">
+                                                <span class="exp-tag">ASP.NET Core MVC</span>
+                                                <span class="exp-tag">SQL Server</span>
+                                                <span class="exp-tag">Host Deploy</span>
+                                                <span class="exp-tag">SEO</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Personal & Freelance Projects -->
+                                    <div class="resume-section">
+                                        <div class="resume-section-title"><i class="bi bi-kanban-fill"></i> Personal &amp; Freelance Projects</div>
+
+                                        <div class="exp-card">
+                                            <div class="exp-company">Smart Digital Wallet — Scientific Basij</div>
+                                            <div class="exp-role">FullStack Developer — Supported by Shahab Growth Center</div>
+                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                            <ul class="exp-bullets mt-2">
+                                                <li>Developed a <strong>smart digital wallet</strong> platform for Scientific Basij members</li>
+                                                <li>Built under the support and incubation of <strong>Shahab Growth Center</strong></li>
+                                                <li>Implemented transaction management, inventory tracking, and financial reporting</li>
+                                            </ul>
+                                            <div class="exp-tags">
+                                                <span class="exp-tag">ASP.NET Core</span>
+                                                <span class="exp-tag">Digital Wallet</span>
+                                                <span class="exp-tag">SQL Server</span>
+                                                <span class="exp-tag">FinTech</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="exp-card">
+                                            <div class="exp-company">BPMS Process Automation — Najafabad Real Estate Agency</div>
+                                            <div class="exp-role">FullStack Developer — Process Automation System</div>
+                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                            <ul class="exp-bullets mt-2">
+                                                <li>Designed and implemented a <strong>BPMS</strong> (Business Process Management System) for a real
+                                                    estate agency</li>
+                                                    <li>Automated workflows, administrative processes, and report generation</li>
+                                                    <li>Integrated with existing property management systems and data sources</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">BPMS</span>
+                                                    <span class="exp-tag">ASP.NET Core</span>
+                                                    <span class="exp-tag">Workflow Automation</span>
+                                                    <span class="exp-tag">SQL Server</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">Real Estate Scraper — Divar · Sheypoor · Souq Al-Maftuh</div>
+                                                <div class="exp-role">Back-End Developer — Web Scraping</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>Scraped rental and buy/sell property listings from 3 major platforms</li>
+                                                    <li>Data sources: <strong>Divar.ir</strong>, <strong>Sheypoor.com</strong>, and <strong>Souq
+                                                        Al-Maftuh</strong></li>
+                                                        <li>Data processing, normalization, and centralized database storage</li>
+                                                        <li>Bypassed rate-limiting and anti-scraping measures</li>
+                                                    </ul>
+                                                    <div class="exp-tags">
+                                                        <span class="exp-tag">Selenium</span>
+                                                        <span class="exp-tag">Web Scraping</span>
+                                                        <span class="exp-tag">Divar · Sheypoor</span>
+                                                        <span class="exp-tag">Real Estate Data</span>
+                                                        <span class="exp-tag">Rate Limit Bypass</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="exp-card">
+                                                    <div class="exp-company">Academic Journal &amp; Article Scraper</div>
+                                                    <div class="exp-role">Back-End Developer — Selenium Scraping</div>
+                                                    <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                                    <ul class="exp-bullets mt-2">
+                                                        <li><strong>ISC</strong> (<code>jcr.isc.ir</code>) — Over <strong>100,000</strong> scientific
+                                                            journal records</li>
+                                                            <li><strong>Scopus</strong> (<code>scopus.com</code>) — Over <strong>1,000,000</strong> article
+                                                                records</li>
+                                                                <li><strong>Web of Science</strong> — Millions of records</li>
+                                                                <li><strong>Google Scholar</strong> — Millions of profiles + Captcha bypass with human simulator
+                                                                </li>
+                                                                <li>Google &amp; Bing search scraping for academic links</li>
+                                                            </ul>
+                                                            <div class="exp-tags">
+                                                                <span class="exp-tag">Selenium</span>
+                                                                <span class="exp-tag">Web Scraping</span>
+                                                                <span class="exp-tag">Captcha Bypass</span>
+                                                                <span class="exp-tag">Human Simulator</span>
+                                                                <span class="exp-tag">Scopus · ISC · WOS</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="exp-card">
+                                                            <div class="exp-company">HPC Virtual Server Allocation Platform</div>
+                                                            <div class="exp-role">Freelance FullStack Developer</div>
+                                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2025</span>
+                                                            <ul class="exp-bullets mt-2">
+                                                                <li>Developed a portal for allocating and managing <strong>HPC virtual servers</strong></li>
+                                                                <li>Integrated with <strong>OpenStack</strong> infrastructure for cloud-based resource management
+                                                                </li>
+                                                            </ul>
+                                                            <div class="exp-tags">
+                                                                <span class="exp-tag">ASP.NET Core MVC</span>
+                                                                <span class="exp-tag">SQL Server</span>
+                                                                <span class="exp-tag">OpenStack</span>
+                                                                <span class="exp-tag">Cloud Infrastructure</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="exp-card mb-0">
+                                                            <div class="exp-company">IMDB Clone Project</div>
+                                                            <div class="exp-role">Freelance FullStack Developer</div>
+                                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2021</span>
+                                                            <ul class="exp-bullets mt-2">
+                                                                <li>Built a localized version of an <strong>IMDB-style</strong> movie rating platform</li>
+                                                                <li>Frontend with <strong>HTML / CSS / JS</strong> and backend with <strong>ASP.NET Core
+                                                                    MVC</strong></li>
+                                                                </ul>
+                                                                <div class="exp-tags">
+                                                                    <span class="exp-tag">ASP.NET Core MVC</span>
+                                                                    <span class="exp-tag">SQL Server</span>
+                                                                    <span class="exp-tag">HTML · CSS · JS</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Skills + Education -->
+                                                        <div class="row g-4">
+                                                            <div class="col-lg-7">
+                                                                <div class="resume-section h-100">
+                                                                    <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> Technical Skills</div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-server me-1"></i> Back-End</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">ASP.NET Core</span>
+                                                                        <span class="skill-tag">ASP.NET MVC</span>
+                                                                        <span class="skill-tag">Web API</span>
+                                                                        <span class="skill-tag">C#</span>
+                                                                        <span class="skill-tag">C++</span>
+                                                                        <span class="skill-tag">Windows Form</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-database me-1"></i> Database</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">SQL Server</span>
+                                                                        <span class="skill-tag">PostgreSQL</span>
+                                                                        <span class="skill-tag">MongoDB</span>
+                                                                        <span class="skill-tag">Elasticsearch</span>
+                                                                        <span class="skill-tag">MySQL</span>
+                                                                        <span class="skill-tag">Redis</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-window me-1"></i> Front-End</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">HTML</span>
+                                                                        <span class="skill-tag">CSS</span>
+                                                                        <span class="skill-tag">JavaScript</span>
+                                                                        <span class="skill-tag">Angular</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-box me-1"></i> Libraries &amp; Technologies</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag-lib">SignalR</span>
+                                                                        <span class="skill-tag-lib">EF Core</span>
+                                                                        <span class="skill-tag-lib">MediatR</span>
+                                                                        <span class="skill-tag-lib">gRPC</span>
+                                                                        <span class="skill-tag-lib">RabbitMQ</span>
+                                                                        <span class="skill-tag-lib">CQRS</span>
+                                                                        <span class="skill-tag-lib">Serilog · Seq</span>
+                                                                        <span class="skill-tag-lib">Selenium</span>
+                                                                        <span class="skill-tag-lib">Microservice</span>
+                                                                        <span class="skill-tag-lib">Clean Architecture</span>
+                                                                        <span class="skill-tag-lib">OpenStack</span>
+                                                                        <span class="skill-tag-lib">File Encryption</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-5">
+                                                                <div class="resume-section mb-4">
+                                                                    <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> Education</div>
+                                                                    <div class="edu-item">
+                                                                        <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                                                        <div>
+                                                                            <div class="fw-bold" style="font-size:1rem">B.Sc. Computer Engineering</div>
+                                                                            <div style="color:var(--accent-color);font-size:.9rem">University of Isfahan</div>
+                                                                            <div style="font-size:.82rem;color:#888">2021 – 2025</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr class="my-3">
+                                                                    <div class="edu-item">
+                                                                        <div class="edu-icon"
+                                                                             style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                                                            <i class="bi bi-people"></i>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div class="fw-bold" style="font-size:.95rem">Member — Entrepreneurship Council</div>
+                                                                            <div style="color:var(--accent-color);font-size:.88rem">University of Isfahan</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="resume-section">
+                                                                    <div class="resume-section-title"><i class="bi bi-translate"></i> Languages</div>
+                                                                    <div class="lang-bar-wrap">
+                                                                        <div class="lang-label">Persian <small class="text-muted">(Native)</small></div>
+                                                                        <div class="progress" style="height:8px;border-radius:8px">
+                                                                            <div class="progress-bar" style="width:100%;background:var(--accent-color)"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="lang-bar-wrap">
+                                                                        <div class="lang-label">English <small class="text-muted">(Professional)</small></div>
+                                                                        <div class="progress" style="height:8px;border-radius:8px">
+                                                                            <div class="progress-bar" style="width:75%;background:var(--accent-color)"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </section>
+
+                                                <!-- Floating Download Button -->
+                                                <a href="/home/downloadaghakabiriresume" class="download-btn" title="Download Resume PDF">
+                                                    <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                                                    Download PDF Resume
+                                                </a>

@@ -1,0 +1,685 @@
+@{
+    ViewData["Title"] = "Sepehr Shirazi — Resume";
+    Layout = "_Layout";
+}
+<link rel="alternate" hreflang="fa" href="/home/sepehrshiraziresume" />
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+        direction: ltr;
+        text-align: left;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, #0f6cbd 0%, #1b3f6e 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-header-card::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 260px;
+        height: 260px;
+        background: rgba(255, 255, 255, .04);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #0f6cbd;
+        border-bottom: 2.5px solid #0f6cbd;
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-left: 4px solid #0f6cbd;
+        padding-left: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #0f6cbd;
+        position: absolute;
+        left: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: #0f6cbd;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-left: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: #0f6cbd;
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid #0f6cbd;
+        color: #0f6cbd;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #0f6cbd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #0f6cbd;
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active current">Sepehr Shirazi Resume</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>Eng. Sepehr Shirazi — Resume</h1>
+        <p>Eng. Shirazi · Senior Frontend &amp; AI Developer</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header Card -->
+        <div class="resume-header-card mb-4">
+            <a href="/home/sepehrshiraziresume" class="resume-lang-switch"><i class="bi bi-globe"></i> نسخه فارسی</a>
+            <div class="row align-items-center gy-4">
+                <div class="col-auto">
+                    <img src="/assets/img/person/sepehr-shirazi.jpg" alt="Sepehr Shirazi" class="resume-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                </div>
+                <div class="col">
+                    <div class="resume-name">Eng. Sepehr Shirazi</div>
+                    <span class="resume-title-badge"><i class="bi bi-robot me-1"></i> Eng. Shirazi · Senior Frontend
+                        &amp; AI Developer</span>
+                        <div class="mt-2">
+                            <a href="mailto:Sepehrshirazi27@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                Sepehrshirazi27@gmail.com</a>
+                                <a href="tel:09358348080" class="contact-chip"><i class="bi bi-telephone"></i> +98 935 834
+                                    8080</a>
+                                    <span class="contact-chip"><i class="bi bi-geo-alt"></i> Isfahan (Vahid), Iran</span>
+                                    <a href="https://github.com/sepehrshz" target="_blank" class="contact-chip"><i
+                                        class="bi bi-github"></i> sepehrshz</a>
+                                        <a href="https://www.linkedin.com/in/sepehr-shirazi-61100422b/" target="_blank"
+                                           class="contact-chip"><i class="bi bi-linkedin"></i> sepehr-shirazi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> About Me</div>
+                            <p class="mb-0" style="line-height:2;font-size:1rem">
+                                A results-driven <strong>Senior Frontend Developer</strong> and <strong>AI Integration
+                                Specialist</strong> with over <strong>4 years of hands-on experience</strong> building modern,
+                                high-performance web applications. Currently pursuing a B.Sc. in Computer Engineering at the
+                                <strong>University of Isfahan</strong>. Deep expertise in <strong>React</strong>,
+                                <strong>Vue.js</strong>, and their production-grade ecosystems including <strong>Next.js</strong>,
+                                <strong>Nuxt.js</strong>, and <strong>TypeScript</strong>. Experienced in integrating <strong>AI &amp;
+                                LLM models</strong> into frontend applications, building interactive AI tools with <strong>OpenAI
+                                API</strong>, and applying machine learning in the browser with <strong>TensorFlow.js</strong>. Also
+                                comfortable building lightweight backends with <strong>Node.js</strong> and <strong>Fastify</strong>. A
+                                collaborative team player and independent problem-solver, always eager to adopt cutting-edge
+                                technologies.
+                            </p>
+                        </div>
+
+                        <!-- Work Experience -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> Work Experience</div>
+
+                            <div class="exp-card">
+                                <div class="exp-company">Ayandehnegar IT Company — Isfahan</div>
+                                <div class="exp-role">Senior Frontend Developer — React / Next.js</div>
+                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2023 – Present</span>
+                                <ul class="exp-bullets mt-2">
+                                    <li>Designed and built a complex admin dashboard using <strong>React 18</strong> and
+                                        <strong>TypeScript</strong>
+                                    </li>
+                                    <li>Significantly improved render performance through <strong>React.memo</strong>,
+                                        <strong>useMemo</strong>, and strategic <strong>Code Splitting</strong>
+                                    </li>
+                                    <li>Implemented <strong>Server-Side Rendering (SSR)</strong> and <strong>Static Site Generation
+                                        (SSG)</strong> with <strong>Next.js</strong></li>
+                                        <li>Built an internal <strong>Design System</strong> with <strong>Tailwind CSS</strong> and reusable
+                                            shared components</li>
+                                            <li>Managed complex application state with <strong>Redux Toolkit</strong> and <strong>React
+                                                Query</strong></li>
+                                                <li>Wrote comprehensive unit and integration tests with <strong>Jest</strong> and <strong>React
+                                                    Testing Library</strong></li>
+                                                    <li>Collaborated closely with the backend team on <strong>REST API</strong> design and integration
+                                                    </li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">React 18</span>
+                                                    <span class="exp-tag">Next.js</span>
+                                                    <span class="exp-tag">TypeScript</span>
+                                                    <span class="exp-tag">Tailwind CSS</span>
+                                                    <span class="exp-tag">Redux Toolkit</span>
+                                                    <span class="exp-tag">React Query</span>
+                                                    <span class="exp-tag">SSR · SSG</span>
+                                                    <span class="exp-tag">Jest</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">Pars Web Digital Marketing Startup</div>
+                                                <div class="exp-role">Frontend Developer — Vue.js / Nuxt.js</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2022 – 2023</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>Developed a full ad campaign management platform with <strong>Vue 3</strong> and
+                                                        <strong>Composition API</strong>
+                                                    </li>
+                                                    <li>Built SEO-optimized pages with <strong>Nuxt.js</strong> and improved Core Web Vitals scores</li>
+                                                    <li>Created interactive data visualizations with <strong>Chart.js</strong> and
+                                                        <strong>D3.js</strong>
+                                                    </li>
+                                                    <li>Managed application state with <strong>Pinia</strong> and streamlined data flow across modules
+                                                    </li>
+                                                    <li>Integrated <strong>WebSocket</strong> connections for real-time data updates</li>
+                                                    <li>Implemented authentication flows with <strong>JWT</strong> and Refresh Token management</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">Vue 3</span>
+                                                    <span class="exp-tag">Nuxt.js</span>
+                                                    <span class="exp-tag">Composition API</span>
+                                                    <span class="exp-tag">Pinia</span>
+                                                    <span class="exp-tag">Chart.js</span>
+                                                    <span class="exp-tag">WebSocket</span>
+                                                    <span class="exp-tag">JWT</span>
+                                                    <span class="exp-tag">SEO</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">Ideapardazan Software Development Co.</div>
+                                                <div class="exp-role">Junior Frontend Developer — JavaScript / React</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2021 – 2022</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>Implemented UI for business websites using <strong>HTML5</strong>, <strong>CSS3</strong>, and
+                                                        vanilla <strong>JavaScript</strong></li>
+                                                        <li>Converted Figma designs into React components with pixel-perfect accuracy</li>
+                                                        <li>Consumed <strong>REST APIs</strong> and rendered dynamic data using <strong>Axios</strong></li>
+                                                        <li>Built fully <strong>Responsive Design</strong> layouts for mobile, tablet, and desktop</li>
+                                                        <li>Adopted <strong>Git</strong> and <strong>GitHub</strong> workflows for collaborative development
+                                                        </li>
+                                                    </ul>
+                                                    <div class="exp-tags">
+                                                        <span class="exp-tag">React</span>
+                                                        <span class="exp-tag">JavaScript</span>
+                                                        <span class="exp-tag">HTML5 · CSS3</span>
+                                                        <span class="exp-tag">Axios</span>
+                                                        <span class="exp-tag">Figma</span>
+                                                        <span class="exp-tag">Responsive Design</span>
+                                                        <span class="exp-tag">Git</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="exp-card mb-0">
+                                                    <div class="exp-company">Freelance — Independent Projects</div>
+                                                    <div class="exp-role">Independent Frontend Developer</div>
+                                                    <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2020 – Present</span>
+                                                    <ul class="exp-bullets mt-2">
+                                                        <li>Designed and delivered over <strong>15 custom websites and web apps</strong> for SMBs and
+                                                            startups</li>
+                                                            <li>Built online stores with an outstanding UI/UX and fast load times</li>
+                                                            <li>Provided ongoing maintenance, updates, and code refactoring services for long-term clients</li>
+                                                            <li>Advised early-stage startups on choosing the right technology stack</li>
+                                                        </ul>
+                                                        <div class="exp-tags">
+                                                            <span class="exp-tag">React</span>
+                                                            <span class="exp-tag">Vue.js</span>
+                                                            <span class="exp-tag">Next.js</span>
+                                                            <span class="exp-tag">Tailwind CSS</span>
+                                                            <span class="exp-tag">Node.js</span>
+                                                            <span class="exp-tag">Freelance</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Notable Projects -->
+                                                <div class="resume-section">
+                                                    <div class="resume-section-title"><i class="bi bi-kanban-fill"></i> Notable Projects</div>
+
+                                                    <div class="exp-card">
+                                                        <div class="exp-company">Weather Forecast Application</div>
+                                                        <div class="exp-role">Frontend Developer — Personal Project</div>
+                                                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2023</span>
+                                                        <ul class="exp-bullets mt-2">
+                                                            <li>Built a full-featured weather app consuming the <strong>OpenWeatherMap API</strong></li>
+                                                            <li>Displayed real-time temperature, humidity, wind data, and a 7-day forecast with smooth
+                                                                animations</li>
+                                                                <li>Supported city search and automatic location detection via <strong>Geolocation API</strong></li>
+                                                                <li>Fully responsive UI crafted with <strong>Tailwind CSS</strong> for a seamless user experience
+                                                                </li>
+                                                            </ul>
+                                                            <div class="exp-tags">
+                                                                <span class="exp-tag">React</span>
+                                                                <span class="exp-tag">TypeScript</span>
+                                                                <span class="exp-tag">Tailwind CSS</span>
+                                                                <span class="exp-tag">REST API</span>
+                                                                <span class="exp-tag">Geolocation</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="exp-card">
+                                                            <div class="exp-company">Collaborative Task Management Platform</div>
+                                                            <div class="exp-role">Full Stack Developer — Team Project</div>
+                                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2023</span>
+                                                            <ul class="exp-bullets mt-2">
+                                                                <li>Built the complete frontend with <strong>Vue 3</strong> and <strong>TypeScript</strong></li>
+                                                                <li>Developed a lightweight backend API with <strong>Node.js</strong>, <strong>Fastify</strong>, and
+                                                                    <strong>JWT</strong> authentication
+                                                                </li>
+                                                                <li>Implemented intuitive Drag &amp; Drop task management using <strong>VueDraggable</strong></li>
+                                                                <li>Enabled real-time team collaboration through <strong>WebSocket</strong></li>
+                                                            </ul>
+                                                            <div class="exp-tags">
+                                                                <span class="exp-tag">Vue 3</span>
+                                                                <span class="exp-tag">TypeScript</span>
+                                                                <span class="exp-tag">Node.js</span>
+                                                                <span class="exp-tag">Fastify</span>
+                                                                <span class="exp-tag">JWT</span>
+                                                                <span class="exp-tag">WebSocket</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="exp-card">
+                                                            <div class="exp-company">E-Commerce Web Application</div>
+                                                            <div class="exp-role">Frontend Developer — Freelance Project</div>
+                                                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2022</span>
+                                                            <ul class="exp-bullets mt-2">
+                                                                <li>Developed a full-featured online store with <strong>Next.js</strong> and <strong>Tailwind
+                                                                    CSS</strong></li>
+                                                                    <li>Implemented a shopping cart, checkout flow, and multi-status order management</li>
+                                                                    <li>Applied <strong>Server-Side Rendering</strong> and dynamic Meta Tags for maximum SEO impact</li>
+                                                                    <li>Achieved a <strong>95+ Google PageSpeed Insights</strong> score on all key metrics</li>
+                                                                </ul>
+                                                                <div class="exp-tags">
+                                                                    <span class="exp-tag">Next.js</span>
+                                                                    <span class="exp-tag">Tailwind CSS</span>
+                                                                    <span class="exp-tag">SSR</span>
+                                                                    <span class="exp-tag">SEO</span>
+                                                                    <span class="exp-tag">PageSpeed 95+</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="exp-card mb-0">
+                                                                <div class="exp-company">Enterprise Analytics Dashboard</div>
+                                                                <div class="exp-role">Frontend Developer — Enterprise Project</div>
+                                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2024</span>
+                                                                <ul class="exp-bullets mt-2">
+                                                                    <li>Implemented a rich data analytics dashboard with advanced <strong>Chart.js</strong> and
+                                                                        <strong>ECharts</strong> visualizations
+                                                                    </li>
+                                                                    <li>Displayed live statistics and reports with advanced filtering and search capabilities</li>
+                                                                    <li>Enabled report export to <strong>PDF</strong> and <strong>Excel</strong> formats</li>
+                                                                    <li>Supported <strong>Dark Mode</strong> and full UI personalization per user preferences</li>
+                                                                </ul>
+                                                                <div class="exp-tags">
+                                                                    <span class="exp-tag">Vue 3</span>
+                                                                    <span class="exp-tag">Chart.js</span>
+                                                                    <span class="exp-tag">ECharts</span>
+                                                                    <span class="exp-tag">PDF Export</span>
+                                                                    <span class="exp-tag">Dark Mode</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Skills + Education -->
+                                                        <div class="row g-4">
+                                                            <div class="col-lg-7">
+                                                                <div class="resume-section h-100">
+                                                                    <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> Technical Skills</div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-window me-1"></i> Frontend (Advanced)</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">JavaScript</span>
+                                                                        <span class="skill-tag">TypeScript</span>
+                                                                        <span class="skill-tag">React</span>
+                                                                        <span class="skill-tag">Vue.js</span>
+                                                                        <span class="skill-tag">Next.js</span>
+                                                                        <span class="skill-tag">Nuxt.js</span>
+                                                                        <span class="skill-tag">HTML5</span>
+                                                                        <span class="skill-tag">CSS3</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-server me-1"></i> Backend (Intermediate)</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">Node.js</span>
+                                                                        <span class="skill-tag">Fastify</span>
+                                                                        <span class="skill-tag">C++</span>
+                                                                        <span class="skill-tag">Java</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-robot me-1"></i> Artificial Intelligence</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag">OpenAI API</span>
+                                                                        <span class="skill-tag">LLM Integration</span>
+                                                                        <span class="skill-tag">TensorFlow.js</span>
+                                                                        <span class="skill-tag">Prompt Engineering</span>
+                                                                    </div>
+
+                                                                    <div class="skill-group-title"><i class="bi bi-box me-1"></i> Libraries &amp; Tools</div>
+                                                                    <div class="skill-tags">
+                                                                        <span class="skill-tag-lib">Tailwind CSS</span>
+                                                                        <span class="skill-tag-lib">Redux Toolkit</span>
+                                                                        <span class="skill-tag-lib">Pinia</span>
+                                                                        <span class="skill-tag-lib">React Query</span>
+                                                                        <span class="skill-tag-lib">Axios</span>
+                                                                        <span class="skill-tag-lib">JWT</span>
+                                                                        <span class="skill-tag-lib">Chart.js</span>
+                                                                        <span class="skill-tag-lib">D3.js</span>
+                                                                        <span class="skill-tag-lib">WebSocket</span>
+                                                                        <span class="skill-tag-lib">Jest</span>
+                                                                        <span class="skill-tag-lib">Git</span>
+                                                                        <span class="skill-tag-lib">Docker</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-5">
+                                                                <div class="resume-section mb-4">
+                                                                    <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> Education</div>
+                                                                    <div class="edu-item">
+                                                                        <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                                                        <div>
+                                                                            <div class="fw-bold" style="font-size:1rem">B.Sc. Computer Engineering</div>
+                                                                            <div style="color:#0f6cbd;font-size:.9rem">University of Isfahan</div>
+                                                                            <div style="font-size:.82rem;color:#888">2021 – Present</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="resume-section mb-4">
+                                                                    <div class="resume-section-title"><i class="bi bi-person-badge-fill"></i> Personal Info</div>
+                                                                    <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;line-height:2.1">
+                                                                        <li><i class="bi bi-calendar3 me-2" style="color:#0f6cbd"></i> Age: <strong>22</strong></li>
+                                                                        <li><i class="bi bi-gender-male me-2" style="color:#0f6cbd"></i> Gender: <strong>Male</strong>
+                                                                        </li>
+                                                                        <li><i class="bi bi-geo-alt me-2" style="color:#0f6cbd"></i> Location: <strong>Isfahan,
+                                                                            Iran</strong></li>
+                                                                            <li><i class="bi bi-heart me-2" style="color:#0f6cbd"></i> Marital Status:
+                                                                                <strong>Single</strong>
+                                                                            </li>
+                                                                            <li><i class="bi bi-shield-check me-2" style="color:#0f6cbd"></i> Military Service:
+                                                                                <strong>Educational Exemption</strong>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                    <div class="resume-section">
+                                                                        <div class="resume-section-title"><i class="bi bi-translate"></i> Languages</div>
+                                                                        <div class="lang-bar-wrap">
+                                                                            <div class="lang-label">Persian <small class="text-muted">(Native)</small></div>
+                                                                            <div class="progress" style="height:8px;border-radius:8px">
+                                                                                <div class="progress-bar" style="width:100%;background:#0f6cbd"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="lang-bar-wrap">
+                                                                            <div class="lang-label">English <small class="text-muted">(Intermediate)</small></div>
+                                                                            <div class="progress" style="height:8px;border-radius:8px">
+                                                                                <div class="progress-bar" style="width:60%;background:#0f6cbd"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </section>
+
+                                                    <!-- Floating Download Button -->
+                                                    <a href="/home/downloadsepehrshiraziresume" class="download-btn" title="Download Resume PDF">
+                                                        <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                                                        Download PDF Resume
+                                                    </a>

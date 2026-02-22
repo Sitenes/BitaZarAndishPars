@@ -1,0 +1,565 @@
+@{
+    ViewData["Title"] = "رزومه کیمیا کیخسروکیانی";
+    Layout = "_Layout";
+}
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #1a3a5c 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        font-size: .9rem;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        border-bottom: 2.5px solid var(--accent-color);
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-right: 4px solid var(--accent-color);
+        padding-right: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        position: absolute;
+        right: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: var(--accent-color);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-right: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid var(--accent-color);
+        color: var(--accent-color);
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> خانه</a></li>
+                <li class="breadcrumb-item active current">رزومه کیمیا کیخسروکیانی</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>رزومه کیمیا کیخسروکیانی</h1>
+        <p>متخصص UI/UX · طراحی رابط و تجربه کاربری</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header -->
+        <div class="resume-header-card mb-4">
+            <!-- Language Switch -->
+            <a href="/home/kimiaresumeen" class="resume-lang-switch">
+                <i class="bi bi-translate"></i> English
+            </a>
+
+            <div class="row align-items-center gy-4">
+                <div class="col-auto">
+                    <img src="/assets/img/person/kimia.jpg" alt="کیمیا کیخسروکیانی" class="resume-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                </div>
+                <div class="col">
+                    <div class="resume-name">کیمیا کیخسروکیانی</div>
+                    <span class="resume-title-badge"><i class="bi bi-palette me-1"></i> متخصص UI/UX · طراحی رابط و تجربه
+                        کاربری</span>
+                        <div class="mt-2">
+                            <a href="mailto:kimiyakeykhosro@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                kimiyakeykhosro@gmail.com</a>
+                                <a href="tel:09941910076" class="contact-chip"><i class="bi bi-telephone"></i> ۰۹۹۴۱۹۱۰۰۷۶</a>
+                                <span class="contact-chip"><i class="bi bi-geo-alt"></i> اصفهان</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="resume-section">
+                    <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> درباره من</div>
+                    <p class="mb-0" style="line-height:2;font-size:1rem">
+                        دانشجوی کارشناسی ارشد <strong>علم اطلاعات و دانش‌شناسی</strong> با گرایش <strong>مدیریت کتابخانه‌های
+                        دیجیتال</strong>
+                        در دانشگاه اصفهان. دارای تخصص در <strong>طراحی رابط کاربری (UI)</strong> و <strong>تجربه کاربری
+                        (UX)</strong>
+                        با مسلط‌بودن کامل بر ابزار <strong>Figma</strong> و مجموعه Adobe. دارای سابقه عملی در طراحی UI/UX برای
+                        سامانه‌های دانشگاهی، پژوهش تجربه کاربری و تولید محتوای متنی و تصویری. فارغ‌التحصیل با
+                        <strong>رتبه ۲ استعداد درخشان</strong> در مقطع کارشناسی.
+                    </p>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-section">
+                    <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> سابقه کاری</div>
+
+                    <div class="exp-card">
+                        <div class="exp-company">شرکت بیتا زر اندیش پارس</div>
+                        <div class="exp-role">طراح UI/UX — سامانه‌های دانشگاه اصفهان</div>
+                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲ – ۱۴۰۳</span>
+                        <ul class="exp-bullets mt-2">
+                            <li>طراحی رابط کاربری برای <strong>سامانه‌های دانشگاه اصفهان</strong></li>
+                            <li>همکاری در طراحی و اجرای پروژه <strong>اتوماسیون اداری</strong> و سامانه پروفایل پژوهشی اساتید
+                            </li>
+                            <li>طراحی وایرفریم، پروتوتایپ تعاملی و جریان کاربری با <strong>Figma</strong></li>
+                            <li>تولید محتوای متنی و بصری برای رابط‌های کاربری</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Figma</span>
+                            <span class="exp-tag">UI Design</span>
+                            <span class="exp-tag">UX Design</span>
+                            <span class="exp-tag">Wireframing</span>
+                            <span class="exp-tag">Prototyping</span>
+                            <span class="exp-tag">Content Creation</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card">
+                        <div class="exp-company">شرکت فولاد مبارکه اصفهان — سامانه هلسا</div>
+                        <div class="exp-role">عضو تیم پژوهش کاربر و تجربه کاربری</div>
+                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                        <ul class="exp-bullets mt-2">
+                            <li>پژوهش و ارزیابی تجربه کاربری <strong>سامانه هلسا</strong> در فولاد مبارکه اصفهان</li>
+                            <li>انجام مصاحبه‌های کاربری و آنالیز نیازها</li>
+                            <li>پیشنهاد بهبودهای طراحی بر اساس یافته‌های پژوهش</li>
+                            <li>سازماندهی و آماده‌سازی کتابخانه امور فرهنگی و توسعه تحقیقات</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="exp-tag">User Research</span>
+                            <span class="exp-tag">UX Evaluation</span>
+                            <span class="exp-tag">User Interview</span>
+                            <span class="exp-tag">Usability Testing</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card mb-0">
+                        <div class="exp-company">انتشارات دانشگاه اصفهان</div>
+                        <div class="exp-role">همکار — بخش تولید محتوا</div>
+                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱ – ۱۴۰۲</span>
+                        <ul class="exp-bullets mt-2">
+                            <li>همکاری با انتشارات دانشگاه اصفهان در قالب LinkedIn انتشارات</li>
+                            <li>ویراستاری متون علمی و تخصصی</li>
+                            <li>تولید و آماده‌سازی محتوای تصویری و متنی</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Scientific Editing</span>
+                            <span class="exp-tag">Content Design</span>
+                            <span class="exp-tag">LinkedIn</span>
+                            <span class="exp-tag">WordPress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="resume-section">
+                    <div class="resume-section-title"><i class="bi bi-kanban-fill"></i> پروژه‌های طراحی</div>
+
+                    <div class="exp-card">
+                        <div class="exp-company">سامانه پروفایل پژوهشی اساتید — دانشگاه اصفهان</div>
+                        <div class="exp-role">طراح UI/UX — همکاری با بیتا زر اندیش پارس</div>
+                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲ – ۱۴۰۳</span>
+                        <ul class="exp-bullets mt-2">
+                            <li>طراحی رابط کاربری سامانه جامع پروفایل پژوهشی اساتید دانشگاه اصفهان</li>
+                            <li>ایجاد پروتوتایپ تعاملی و جریان‌های کاربری</li>
+                            <li>ارزیابی کاربردپذیری و بهینه‌سازی تجربه کاربری</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Figma</span>
+                            <span class="exp-tag">UI/UX</span>
+                            <span class="exp-tag">Interactive Prototype</span>
+                            <span class="exp-tag">Usability</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card mb-0">
+                        <div class="exp-company">اتوماسیون اداری — دانشگاه اصفهان</div>
+                        <div class="exp-role">طراح UI/UX</div>
+                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                        <ul class="exp-bullets mt-2">
+                            <li>همکاری در طراحی و اجرای پروژه <strong>اتوماسیون اداری</strong> دانشگاه اصفهان</li>
+                            <li>طراحی سامانه‌های UI/UX متناسب با نیازهای کاربران دانشگاهی</li>
+                            <li>تدریس نرم‌افزار Figma برای تیم طراحی</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="exp-tag">Figma</span>
+                            <span class="exp-tag">Admin Panel Design</span>
+                            <span class="exp-tag">UX Research</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills + Education side by side -->
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <div class="resume-section h-100">
+                            <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> مهارت‌ها</div>
+
+                            <div class="skill-group-title"><i class="bi bi-palette me-1"></i> UI/UX Design</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">UI Design</span>
+                                <span class="skill-tag">UX Design</span>
+                                <span class="skill-tag">Wireframing</span>
+                                <span class="skill-tag">Prototyping</span>
+                                <span class="skill-tag">Adobe XD</span>
+                                <span class="skill-tag">User Research</span>
+                            </div>
+
+                            <div class="skill-group-title"><i class="bi bi-brush me-1"></i> طراحی گرافیک و محتوا</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Photoshop</span>
+                                <span class="skill-tag">InDesign</span>
+                                <span class="skill-tag">Premiere</span>
+                                <span class="skill-tag">Audition</span>
+                                <span class="skill-tag">Camtasia</span>
+                            </div>
+
+                            <div class="skill-group-title"><i class="bi bi-file-earmark-text me-1"></i> ابزارها و نرم‌افزارها
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag-lib">Microsoft Office</span>
+                                <span class="skill-tag-lib">Mendeley</span>
+                                <span class="skill-tag-lib">WordPress</span>
+                                <span class="skill-tag-lib">Canvas</span>
+                                <span class="skill-tag-lib">Storyline</span>
+                            </div>
+
+                            <div class="skill-group-title"><i class="bi bi-code-slash me-1"></i> برنامه‌نویسی (آشنایی)</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag-lib">HTML</span>
+                                <span class="skill-tag-lib">CSS</span>
+                                <span class="skill-tag-lib">C++</span>
+                                <span class="skill-tag-lib">C#</span>
+                            </div>
+
+                            <div class="skill-group-title"><i class="bi bi-pencil me-1"></i> سایر مهارت‌ها</div>
+                            <div class="skill-tags">
+                                <span class="skill-tag-lib">ویراستاری علمی</span>
+                                <span class="skill-tag-lib">طراحی پایگاه داده</span>
+                                <span class="skill-tag-lib">تایپ ۱۰ انگشتی</span>
+                                <span class="skill-tag-lib">تولید محتوا</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="resume-section mb-4">
+                            <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> تحصیلات</div>
+                            <div class="edu-item mb-3">
+                                <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                <div>
+                                    <div class="fw-bold" style="font-size:1rem">کارشناسی ارشد علم اطلاعات و دانش‌شناسی</div>
+                                    <div style="color:var(--accent-color);font-size:.9rem">گرایش مدیریت کتابخانه‌های دیجیتال
+                                    </div>
+                                    <div style="color:var(--accent-color);font-size:.88rem">دانشگاه اصفهان</div>
+                                    <div style="font-size:.82rem;color:#888">۱۴۰۳ – ادامه دارد</div>
+                                </div>
+                            </div>
+                            <hr class="my-3">
+                            <div class="edu-item">
+                                <div class="edu-icon"
+                                     style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold" style="font-size:1rem">کارشناسی علم اطلاعات و دانش‌شناسی</div>
+                                    <div style="color:var(--accent-color);font-size:.88rem">دانشگاه اصفهان</div>
+                                    <div style="font-size:.82rem;color:#888">۱۳۹۹ – ۱۴۰۲</div>
+                                    <div style="font-size:.82rem;color:var(--accent-color);font-weight:700">🏅 رتبه ۲ استعداد
+                                        درخشان ورودی ۹۹</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="resume-section">
+                                <div class="resume-section-title"><i class="bi bi-translate"></i> زبان‌ها</div>
+                                <div class="lang-bar-wrap">
+                                    <div class="lang-label">فارسی <small class="text-muted">(زبان مادری)</small></div>
+                                    <div class="progress" style="height:8px;border-radius:8px">
+                                        <div class="progress-bar" style="width:100%;background:var(--accent-color)"></div>
+                                    </div>
+                                </div>
+                                <div class="lang-bar-wrap">
+                                    <div class="lang-label">انگلیسی</div>
+                                    <div class="progress" style="height:8px;border-radius:8px">
+                                        <div class="progress-bar" style="width:65%;background:var(--accent-color)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Floating Download Button -->
+            <a href="/home/downloadkimiaresume" class="download-btn" title="دانلود رزومه PDF">
+                <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                Kimia Keykhosrokiani Resume.pdf
+            </a>

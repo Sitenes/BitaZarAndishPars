@@ -1,0 +1,582 @@
+@{
+    ViewData["Title"] = "رزومه محمد امین مداحی";
+    Layout = "_Layout";
+}
+<link rel="alternate" hreflang="en" href="/home/aminmahadiresumeen" />
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #1a3a5c 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        border-bottom: 2.5px solid var(--accent-color);
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-right: 4px solid var(--accent-color);
+        padding-right: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        position: absolute;
+        right: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: var(--accent-color);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-right: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid var(--accent-color);
+        color: var(--accent-color);
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> خانه</a></li>
+                <li class="breadcrumb-item active current">رزومه محمد امین مداحی</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>رزومه محمد امین مداحی</h1>
+        <p>متخصص مدیریت کسب‌وکار · توسعه بازار</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header -->
+        <div class="resume-header-card mb-4">
+            <div class="row align-items-center gy-4">
+                <div class="col-auto">
+                    <img src="/assets/img/person/madahi.jpg" alt="محمد امین مداحی" class="resume-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                </div>
+                <div class="col">
+                    <div class="resume-name">محمد امین مداحی</div>
+                    <span class="resume-title-badge"><i class="bi bi-briefcase me-1"></i> متخصص مدیریت کسب‌وکار · توسعه
+                        بازار</span>
+                        <a href="/home/aminmahadiresumeen" class="resume-lang-switch"><i class="bi bi-globe"></i> English
+                            Resume</a>
+                            <div class="mt-2">
+                                <a href="mailto:aminforexcrypto@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                    aminforexcrypto@gmail.com</a>
+                                    <a href="tel:09139001374" class="contact-chip"><i class="bi bi-telephone"></i> ۰۹۱۳۹۰۰۱۳۷۴</a>
+                                    <span class="contact-chip"><i class="bi bi-geo-alt"></i> اصفهان</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="resume-section">
+                        <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> درباره من</div>
+                        <p class="mb-0" style="line-height:2;font-size:1rem">
+                            متخصص <strong>مدیریت کسب‌وکار و توسعه بازار</strong> با تحصیلات <strong>کارشناسی مهندسی مکانیک</strong>
+                            و <strong>کارشناسی ارشد مدیریت کسب‌وکار</strong>. دارای سابقهٔ گسترده‌ای در مدیریت فضای مجازی و دیجیتال
+                            و مدیریت رسانه‌های دیجیتال با تجربه رهبری تیم‌ها و پروژه‌های بزرگ. فارغ‌التحصیل با معدل
+                            <strong>۱۸.۵</strong>
+                            در مقطع کارشناسی و معدل <strong>۱۸</strong> در مقطع کارشناسی ارشد.
+                        </p>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="resume-section">
+                        <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> سابقه کاری</div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">شرکت بیتا زر اندیش پارس</div>
+                            <div class="exp-role">عضو هیئت مدیره</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱ – کنونی</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>مدیریت مدیر فضای مجازی و دیجیتال شرکت</li>
+                                <li>تدوین استراتژی‌های توسعه بازار و کسب‌وکار</li>
+                                <li>نظارت بر پروژه‌های کسب‌وکار و فرآیندهای سازمانی</li>
+                                <li>همکاری با دانشگاه اصفهان در عملیات‌های توسعهٔ استراتژیک</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Business Management</span>
+                                <span class="exp-tag">Digital Marketing</span>
+                                <span class="exp-tag">Market Development</span>
+                                <span class="exp-tag">Strategic Planning</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">دستگاه اجرایی مشاور فرهنگی‌نهاد مدیریت سامانه مشاغل شهری</div>
+                            <div class="exp-role">مدیر وقت‌شناس</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲ – ۱۴۰۳</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>مدیریت فضای مجازی و دیجیتال سازمان</li>
+                                <li>تولید و مدیریت محتوای دیجیتال و تصویری</li>
+                                <li>نظارت بر پروژه‌ها و رسانه‌های دیجیتال</li>
+                                <li>هماهنگی با دستگاه‌های دولتی و خصوصی</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Digital Management</span>
+                                <span class="exp-tag">Content Creation</span>
+                                <span class="exp-tag">Project Management</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">سازمان مسؤول سامانه‌های هدف‌مند شبکه اطلاعات شهری اصفهان</div>
+                            <div class="exp-role">مدیر تیم تخصصی و دیجیتال</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۰ – ۱۴۰۲</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>رهبری تیم تخصصی فضای مجازی و دیجیتال</li>
+                                <li>مدیریت محتوای تصویری و رسانهٔ دیجیتال</li>
+                                <li>برگزاری مراسم‌های بزرگ و رویدادهای شهری</li>
+                                <li>هماهنگی با ادارات شهری و سازمان‌های مختلف</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Team Leadership</span>
+                                <span class="exp-tag">Event Management</span>
+                                <span class="exp-tag">Digital Coordination</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card mb-0">
+                            <div class="exp-company">مرکز آموزشی کاما (Karma) – دانشگاه پیام نور</div>
+                            <div class="exp-role">مدیر اجرایی و مشاور تحصیلی</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۳۹۹ – ۱۴۰۳</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>مدیریت اجرایی مرکز آموزشی</li>
+                                <li>مشاوره‌ی تحصیلی و برنامه‌ریزی آموزشی</li>
+                                <li>ارتباط‌گیری با دانشگاه‌های مختلف</li>
+                                <li>توسعهٔ فرآیندهای تحصیلی و نظارت کیفیت</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Educational Management</span>
+                                <span class="exp-tag">Academic Advisory</span>
+                                <span class="exp-tag">Quality Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects & Activities -->
+                    <div class="resume-section">
+                        <div class="resume-section-title"><i class="bi bi-kanban-fill"></i> فعالیت‌های برتر و جوایز</div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">رتبهٔ برتر رویدادهای کاری</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                            <p style="color:var(--default-color);line-height:1.8">رتبهٔ برتر در برگزاری و مدیریت رویدادهای شهری در
+                                اصفهان</p>
+                            </div>
+
+                            <div class="exp-card">
+                                <div class="exp-company">رتبهٔ برتر جشنوارهٔ موسیقی خیریه (آپاراکاپاکیا)</div>
+                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                                <p style="color:var(--default-color);line-height:1.8">رتبهٔ برتر در مدیریت و برگزاری جشنوارهٔ بین‌المللی
+                                </p>
+                            </div>
+
+                            <div class="exp-card">
+                                <div class="exp-company">رتبهٔ برتر جشنوارهٔ نوآوری موسیقی</div>
+                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                                <p style="color:var(--default-color);line-height:1.8">رهبری تیم برگزاری جشنوارهٔ نوآوری در علوم موسیقی و
+                                    فرهنگ</p>
+                                </div>
+
+                                <div class="exp-card">
+                                    <div class="exp-company">رتبهٔ برتر جشنوارهٔ موسیقی دروسی و عرفانی</div>
+                                    <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱</span>
+                                    <p style="color:var(--default-color);line-height:1.8">مدیریت و برگزاری موفق جشنوارهٔ موسیقی</p>
+                                </div>
+
+                                <div class="exp-card mb-0">
+                                    <div class="exp-company">پروژهٔ بسیج دفاع از میراث کشاورزی (National Defense Farming Project)</div>
+                                    <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱</span>
+                                    <p style="color:var(--default-color);line-height:1.8">هماهنگی و برگزاری پوشش رسانهٔ کاملی برای این
+                                        پروژهٔ ملی</p>
+                                    </div>
+                                </div>
+
+                                <!-- Skills + Education side by side -->
+                                <div class="row g-4">
+                                    <div class="col-lg-7">
+                                        <div class="resume-section h-100">
+                                            <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> مهارت‌ها</div>
+
+                                            <div class="skill-group-title"><i class="bi bi-briefcase me-1"></i> مدیریت و کسب‌وکار</div>
+                                            <div class="skill-tags">
+                                                <span class="skill-tag">Project Management</span>
+                                                <span class="skill-tag">Business Development</span>
+                                                <span class="skill-tag">Market Analysis</span>
+                                                <span class="skill-tag">Strategic Planning</span>
+                                                <span class="skill-tag">Team Leadership</span>
+                                                <span class="skill-tag">Organizational Management</span>
+                                            </div>
+
+                                            <div class="skill-group-title"><i class="bi bi-palette me-1"></i> مدیریت دیجیتال و محتوا</div>
+                                            <div class="skill-tags">
+                                                <span class="skill-tag">Digital Management</span>
+                                                <span class="skill-tag">Content Creation</span>
+                                                <span class="skill-tag">Video Production</span>
+                                                <span class="skill-tag">Photography</span>
+                                                <span class="skill-tag">Live Streaming</span>
+                                                <span class="skill-tag">Media Management</span>
+                                            </div>
+
+                                            <div class="skill-group-title"><i class="bi bi-film me-1"></i> تولید محتوای رسانه‌ای</div>
+                                            <div class="skill-tags">
+                                                <span class="skill-tag">Adobe Photoshop</span>
+                                                <span class="skill-tag">Adobe Premiere Pro</span>
+                                                <span class="skill-tag">Adobe Audition</span>
+                                                <span class="skill-tag">Video Editing</span>
+                                                <span class="skill-tag">Graphic Design</span>
+                                            </div>
+
+                                            <div class="skill-group-title"><i class="bi bi-music-note me-1"></i> مدیریت موسیقی و فرهنگ</div>
+                                            <div class="skill-tags">
+                                                <span class="skill-tag-lib">Event Management</span>
+                                                <span class="skill-tag-lib">Music Production</span>
+                                                <span class="skill-tag-lib">Cultural Consulting</span>
+                                                <span class="skill-tag-lib">Advertising</span>
+                                            </div>
+
+                                            <div class="skill-group-title"><i class="bi bi-translate me-1"></i> سایر مهارت‌ها</div>
+                                            <div class="skill-tags">
+                                                <span class="skill-tag-lib">Financial Consulting</span>
+                                                <span class="skill-tag-lib">Construction & City Planning</span>
+                                                <span class="skill-tag-lib">Photography Specialization</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5">
+                                        <div class="resume-section mb-4">
+                                            <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> تحصیلات</div>
+                                            <div class="edu-item mb-3">
+                                                <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                                <div>
+                                                    <div class="fw-bold" style="font-size:1rem">کارشناسی ارشد مدیریت کسب‌و کار</div>
+                                                    <div style="color:var(--accent-color);font-size:.9rem">دانشگاه پیام نور اصفهان</div>
+                                                    <div style="font-size:.82rem;color:#888">۱۴۰۰ – ۱۴۰۲</div>
+                                                    <div style="font-size:.82rem;color:var(--accent-color);font-weight:700">معدل: ۱۸</div>
+                                                </div>
+                                            </div>
+                                            <hr class="my-3">
+                                            <div class="edu-item mb-3">
+                                                <div class="edu-icon"
+                                                     style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                                    <i class="bi bi-award"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold" style="font-size:1rem">کارشناسی مهندسی مکانیک</div>
+                                                    <div style="color:var(--accent-color);font-size:.88rem">دانشگاه آزاد اسلامی (نجف‌آباد)</div>
+                                                    <div style="font-size:.82rem;color:#888">۱۳۹۹ – ۱۴۰۰</div>
+                                                    <div style="font-size:.82rem;color:var(--accent-color);font-weight:700">معدل: ۱۸.۵</div>
+                                                </div>
+                                            </div>
+                                            <hr class="my-3">
+                                            <div class="edu-item">
+                                                <div class="edu-icon"
+                                                     style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                                    <i class="bi bi-calendar-event"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold" style="font-size:.95rem">تاریخ تولد</div>
+                                                    <div style="font-size:.82rem;color:#888">۱۳۸۲/۴/۴</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="resume-section">
+                                            <div class="resume-section-title"><i class="bi bi-translate"></i> زبان‌ها</div>
+                                            <div class="lang-bar-wrap">
+                                                <div class="lang-label">فارسی <small class="text-muted">(زبان مادری)</small></div>
+                                                <div class="progress" style="height:8px;border-radius:8px">
+                                                    <div class="progress-bar" style="width:100%;background:var(--accent-color)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="lang-bar-wrap">
+                                                <div class="lang-label">انگلیسی</div>
+                                                <div class="progress" style="height:8px;border-radius:8px">
+                                                    <div class="progress-bar" style="width:55%;background:var(--accent-color)"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        <!-- Floating Download Button -->
+                        <a href="/home/downloadaminmahadiresume" class="download-btn" title="دانلود رزومه PDF">
+                            <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                            Mohammad Amin Madahi Resume.pdf
+                        </a>

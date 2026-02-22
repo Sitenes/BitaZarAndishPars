@@ -1,0 +1,546 @@
+@{
+    ViewData["Title"] = "Mohammad Amin Madahi Resume";
+    Layout = "_Layout";
+}
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, var(--accent-color) 0%, #1a3a5c 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        border-bottom: 2.5px solid var(--accent-color);
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent-color);
+        position: absolute;
+        left: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: var(--accent-color);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-left: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid var(--accent-color);
+        color: var(--accent-color);
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active current">Mohammad Amin Madahi Resume</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>Mohammad Amin Madahi Resume</h1>
+        <p>Business Management Specialist · Market Development</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header -->
+        <div class="resume-header-card mb-4">
+            <div class="row align-items-center gy-4">
+                <div class="col-auto">
+                    <img src="/assets/img/person/madahi.jpg" alt="Mohammad Amin Madahi" class="resume-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                </div>
+                <div class="col">
+                    <div class="resume-name">Mohammad Amin Madahi</div>
+                    <span class="resume-title-badge"><i class="bi bi-briefcase me-1"></i> Business Management Specialist
+                        · Market Development</span>
+                        <a href="/home/aminmahadiresume" class="resume-lang-switch"><i class="bi bi-globe"></i> فارسی</a>
+                        <div class="mt-2">
+                            <a href="mailto:aminforexcrypto@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                aminforexcrypto@gmail.com</a>
+                                <a href="tel:09139001374" class="contact-chip"><i class="bi bi-telephone"></i> +98 913 900
+                                    1374</a>
+                                    <span class="contact-chip"><i class="bi bi-geo-alt"></i> Isfahan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="resume-section">
+                        <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> About Me</div>
+                        <p class="mb-0" style="line-height:2;font-size:1rem">
+                            Business management specialist with expertise in market development and organizational leadership.
+                            Holds a <strong>Bachelor's degree in Mechanical Engineering</strong> and a <strong>Master's degree in
+                            Business Administration</strong>.
+                            Extensive experience in digital and virtual space management, digital media management, and leading
+                            teams on large-scale projects.
+                            Graduated with a GPA of <strong>18.5</strong> at the Bachelor's level and <strong>18</strong> at the
+                            Master's level.
+                        </p>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="resume-section">
+                        <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> Professional Experience</div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">Bita Zar Andish Pars Co.</div>
+                            <div class="exp-role">Board Member</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> Sep 2022 – Present</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>Managing digital and virtual space operations for the company</li>
+                                <li>Formulating market development and business growth strategies</li>
+                                <li>Overseeing business projects and organizational processes</li>
+                                <li>Collaborating with the University of Isfahan on strategic development operations</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Business Management</span>
+                                <span class="exp-tag">Digital Marketing</span>
+                                <span class="exp-tag">Market Development</span>
+                                <span class="exp-tag">Strategic Planning</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">Urban Affairs Management System Organization</div>
+                            <div class="exp-role">Timing Manager & Cultural Advisor</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> Sep 2023 – Sep 2024</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>Managing digital and virtual space for the organization</li>
+                                <li>Producing and managing digital and visual content</li>
+                                <li>Overseeing digital media projects and governance</li>
+                                <li>Coordinating with government and private sector agencies</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Digital Management</span>
+                                <span class="exp-tag">Content Creation</span>
+                                <span class="exp-tag">Project Management</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card">
+                            <div class="exp-company">Urban Management Information System Organization</div>
+                            <div class="exp-role">Specialized & Digital Team Manager</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> Jul 2021 – Sep 2023</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>Leading specialized virtual and digital space teams</li>
+                                <li>Managing visual media content and digital resources</li>
+                                <li>Organizing and managing large-scale city events</li>
+                                <li>Coordinating with various urban management departments</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Team Leadership</span>
+                                <span class="exp-tag">Event Management</span>
+                                <span class="exp-tag">Digital Coordination</span>
+                            </div>
+                        </div>
+
+                        <div class="exp-card mb-0">
+                            <div class="exp-company">Karma Educational Center – Payame Noor University</div>
+                            <div class="exp-role">Executive Manager & Academic Advisor</div>
+                            <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> 2020 – Present</span>
+                            <ul class="exp-bullets mt-2">
+                                <li>Administrative management of educational center</li>
+                                <li>Academic counseling and educational planning</li>
+                                <li>University liaison and institutional coordination</li>
+                                <li>Academic process development and quality assurance</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="exp-tag">Educational Management</span>
+                                <span class="exp-tag">Academic Advisory</span>
+                                <span class="exp-tag">Quality Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills + Education side by side -->
+                    <div class="row g-4">
+                        <div class="col-lg-7">
+                            <div class="resume-section h-100">
+                                <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> Skills</div>
+
+                                <div class="skill-group-title"><i class="bi bi-briefcase me-1"></i> Management & Business</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Business Development</span>
+                                    <span class="skill-tag">Market Analysis</span>
+                                    <span class="skill-tag">Strategic Planning</span>
+                                    <span class="skill-tag">Team Leadership</span>
+                                    <span class="skill-tag">Organizational Management</span>
+                                </div>
+
+                                <div class="skill-group-title"><i class="bi bi-palette me-1"></i> Digital & Content Management</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Digital Management</span>
+                                    <span class="skill-tag">Content Creation</span>
+                                    <span class="skill-tag">Video Production</span>
+                                    <span class="skill-tag">Photography</span>
+                                    <span class="skill-tag">Live Streaming</span>
+                                    <span class="skill-tag">Media Management</span>
+                                </div>
+
+                                <div class="skill-group-title"><i class="bi bi-film me-1"></i> Media Production</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Adobe Photoshop</span>
+                                    <span class="skill-tag">Adobe Premiere Pro</span>
+                                    <span class="skill-tag">Adobe Audition</span>
+                                    <span class="skill-tag">Video Editing</span>
+                                    <span class="skill-tag">Graphic Design</span>
+                                </div>
+
+                                <div class="skill-group-title"><i class="bi bi-music-note me-1"></i> Music & Culture Management
+                                </div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag-lib">Event Management</span>
+                                    <span class="skill-tag-lib">Music Production</span>
+                                    <span class="skill-tag-lib">Cultural Consulting</span>
+                                    <span class="skill-tag-lib">Advertising</span>
+                                </div>
+
+                                <div class="skill-group-title"><i class="bi bi-translate me-1"></i> Other Skills</div>
+                                <div class="skill-tags">
+                                    <span class="skill-tag-lib">Financial Consulting</span>
+                                    <span class="skill-tag-lib">Construction & City Planning</span>
+                                    <span class="skill-tag-lib">Photography Specialization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="resume-section mb-4">
+                                <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> Education</div>
+                                <div class="edu-item mb-3">
+                                    <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                    <div>
+                                        <div class="fw-bold" style="font-size:1rem">Master's in Business Administration</div>
+                                        <div style="color:var(--accent-color);font-size:.9rem">Payame Noor University, Isfahan</div>
+                                        <div style="font-size:.82rem;color:#888">2021 – 2023</div>
+                                        <div style="font-size:.82rem;color:var(--accent-color);font-weight:700">GPA: 18</div>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="edu-item mb-3">
+                                    <div class="edu-icon"
+                                         style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                        <i class="bi bi-award"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold" style="font-size:1rem">Bachelor's in Mechanical Engineering</div>
+                                        <div style="color:var(--accent-color);font-size:.88rem">Islamic Azad University (Najafabad)
+                                        </div>
+                                        <div style="font-size:.82rem;color:#888">2020 – 2021</div>
+                                        <div style="font-size:.82rem;color:var(--accent-color);font-weight:700">GPA: 18.5</div>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="edu-item">
+                                    <div class="edu-icon"
+                                         style="background:var(--background-color);color:var(--accent-color);border:1.5px solid var(--accent-color)">
+                                        <i class="bi bi-calendar-event"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold" style="font-size:.95rem">Date of Birth</div>
+                                        <div style="font-size:.82rem;color:#888">June 25, 1903</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="resume-section">
+                                <div class="resume-section-title"><i class="bi bi-translate"></i> Languages</div>
+                                <div class="lang-bar-wrap">
+                                    <div class="lang-label">Persian <small class="text-muted">(Native)</small></div>
+                                    <div class="progress" style="height:8px;border-radius:8px">
+                                        <div class="progress-bar" style="width:100%;background:var(--accent-color)"></div>
+                                    </div>
+                                </div>
+                                <div class="lang-bar-wrap">
+                                    <div class="lang-label">English</div>
+                                    <div class="progress" style="height:8px;border-radius:8px">
+                                        <div class="progress-bar" style="width:55%;background:var(--accent-color)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Floating Download Button -->
+            <a href="/home/downloadaminmahadiresume" class="download-btn" title="Download Resume PDF">
+                <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                Mohammad Amin Madahi Resume.pdf
+            </a>

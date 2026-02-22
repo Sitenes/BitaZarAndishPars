@@ -1,0 +1,663 @@
+@{
+    ViewData["Title"] = "رزومه سپهر شیرازی";
+    Layout = "_Layout";
+}
+<link rel="alternate" hreflang="en" href="/home/sepehrshiraziresumeen" />
+
+<style>
+    .resume-page {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .resume-header-card {
+        background: linear-gradient(135deg, #0f6cbd 0%, #1b3f6e 100%);
+        border-radius: 20px;
+        padding: 56px 48px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resume-header-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, .07);
+        border-radius: 50%;
+    }
+
+    .resume-header-card::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: rgba(255, 255, 255, .04);
+        border-radius: 50%;
+    }
+
+    .resume-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        object-fit: cover;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+    }
+
+    .resume-avatar-placeholder {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, .45);
+        background: rgba(255, 255, 255, .15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+    }
+
+    .resume-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -.5px;
+    }
+
+    .resume-lang-switch {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        background: rgba(255, 255, 255, .18);
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        border-radius: 24px;
+        padding: 6px 18px;
+        color: #fff;
+        font-size: .9rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: background .2s;
+    }
+
+    .resume-lang-switch:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-title-badge {
+        background: rgba(255, 255, 255, .2);
+        border-radius: 30px;
+        padding: 7px 22px;
+        font-size: 1.05rem;
+        display: inline-block;
+        margin-bottom: 16px;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    .contact-chip {
+        background: rgba(255, 255, 255, .15);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: .85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px;
+        text-decoration: none;
+        color: #fff;
+        transition: background .2s;
+    }
+
+    .contact-chip:hover {
+        background: rgba(255, 255, 255, .3);
+        color: #fff;
+    }
+
+    .resume-section {
+        background: var(--surface-color);
+        border-radius: 20px;
+        padding: 40px 44px;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, .07);
+    }
+
+    .resume-section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #0f6cbd;
+        border-bottom: 2.5px solid #0f6cbd;
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exp-card {
+        border-right: 4px solid #0f6cbd;
+        padding-right: 24px;
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .exp-card::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #0f6cbd;
+        position: absolute;
+        right: -9px;
+        top: 7px;
+    }
+
+    .exp-company {
+        font-size: 1.18rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-role {
+        color: #0f6cbd;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .exp-period {
+        font-size: .85rem;
+        color: #888;
+        background: var(--background-color);
+        border-radius: 14px;
+        padding: 3px 14px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+        padding-right: 18px;
+        margin-bottom: 12px;
+    }
+
+    .exp-bullets li {
+        font-size: .93rem;
+        line-height: 1.85;
+        color: var(--default-color);
+        margin-bottom: 3px;
+    }
+
+    .exp-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .exp-tag {
+        background: var(--background-color);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 16px;
+        padding: 4px 14px;
+        font-size: .82rem;
+        color: var(--default-color);
+        font-family: monospace;
+    }
+
+    .skill-group-title {
+        font-size: .95rem;
+        font-weight: 800;
+        color: var(--heading-color);
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+    }
+
+    .skill-tag {
+        background: #0f6cbd;
+        color: #fff;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .skill-tag-lib {
+        background: var(--background-color);
+        border: 1.5px solid #0f6cbd;
+        color: #0f6cbd;
+        border-radius: 18px;
+        padding: 6px 18px;
+        font-size: .88rem;
+        font-weight: 600;
+    }
+
+    .edu-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .edu-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #0f6cbd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .lang-bar-wrap {
+        margin-bottom: 12px;
+    }
+
+    .lang-bar-wrap .lang-label {
+        font-size: .9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .download-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: #0f6cbd;
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1000;
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .download-btn:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, .25);
+    }
+
+    @@media print {
+        .download-btn {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-title">
+    <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="bi bi-house"></i> خانه</a></li>
+                <li class="breadcrumb-item active current">رزومه سپهر شیرازی</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="title-wrapper">
+        <h1>رزومه مهندس سپهر شیرازی</h1>
+        <p>مهندس شیرازی · سنیور فرانت‌اند و هوش مصنوعی</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container resume-page" data-aos="fade-up">
+
+        <!-- Header Card -->
+        <div class="resume-header-card mb-4">
+            <a href="/home/sepehrshiraziresumeen" class="resume-lang-switch"><i class="bi bi-globe"></i> English
+                Resume</a>
+                <div class="row align-items-center gy-4">
+                    <div class="col-auto">
+                        <img src="/assets/img/person/sepehr-shirazi.jpg" alt="سپهر شیرازی" class="resume-avatar"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="resume-avatar-placeholder" style="display:none"><i class="bi bi-person"></i></div>
+                    </div>
+                    <div class="col">
+                        <div class="resume-name">مهندس سپهر شیرازی</div>
+                        <span class="resume-title-badge"><i class="bi bi-robot me-1"></i> مهندس شیرازی · سنیور فرانت‌اند و
+                            هوش مصنوعی</span>
+                            <div class="mt-2">
+                                <a href="mailto:Sepehrshirazi27@gmail.com" class="contact-chip"><i class="bi bi-envelope"></i>
+                                    Sepehrshirazi27@gmail.com</a>
+                                    <a href="tel:09358348080" class="contact-chip"><i class="bi bi-telephone"></i> ۰۹۳۵۸۳۴۸۰۸۰</a>
+                                    <span class="contact-chip"><i class="bi bi-geo-alt"></i> اصفهان، وحید</span>
+                                    <a href="https://github.com/sepehrshz" target="_blank" class="contact-chip"><i
+                                        class="bi bi-github"></i> sepehrshz</a>
+                                        <a href="https://www.linkedin.com/in/sepehr-shirazi-61100422b/" target="_blank"
+                                           class="contact-chip"><i class="bi bi-linkedin"></i> sepehr-shirazi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-person-lines-fill"></i> درباره من</div>
+                            <p class="mb-0" style="line-height:2;font-size:1rem">
+                                توسعه‌دهنده <strong>سنیور فرانت‌اند</strong> و متخصص <strong>هوش مصنوعی</strong> با بیش از <strong>۴ سال
+                                تجربه</strong> عملی در ساخت اپلیکیشن‌های وب مدرن و مقیاس‌پذیر. دانشجوی مهندسی کامپیوتر دانشگاه
+                                اصفهان با تخصص عمیق در فریم‌ورک‌های
+                                <strong>React</strong> و <strong>Vue.js</strong> و اکوسیستم‌های مرتبط از جمله
+                                <strong>Next.js</strong>، <strong>Nuxt.js</strong> و <strong>TypeScript</strong>.
+                                در طراحی رابط کاربری پیشرفته با تمرکز بر تجربه کاربری، کارایی بالا و کد تمیز مهارت دارم. تجربه فعال در
+                                یکپارچه‌سازی مدل‌های <strong>هوش مصنوعی</strong> و <strong>LLM</strong> در اپلیکیشن‌های فرانت‌اند، ساخت
+                                ابزارهای تعاملی با <strong>OpenAI API</strong> و اعمال یادگیری ماشین در مرورگر با
+                                <strong>TensorFlow.js</strong>.
+                                علاوه بر فرانت‌اند، با <strong>Node.js</strong> و <strong>Fastify</strong> در سمت بک‌اند نیز تجربه دارم.
+                                دارای روحیه کار تیمی و همیشه آماده یادگیری تکنولوژی‌های نو.
+                            </p>
+                        </div>
+
+                        <!-- Work Experience -->
+                        <div class="resume-section">
+                            <div class="resume-section-title"><i class="bi bi-briefcase-fill"></i> سابقه کاری</div>
+
+                            <div class="exp-card">
+                                <div class="exp-company">شرکت فناوری اطلاعات آینده‌نگر اصفهان</div>
+                                <div class="exp-role">توسعه‌دهنده ارشد فرانت‌اند — React / Next.js</div>
+                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲ – اکنون</span>
+                                <ul class="exp-bullets mt-2">
+                                    <li>طراحی و پیاده‌سازی داشبورد مدیریتی پیچیده با <strong>React 18</strong> و
+                                        <strong>TypeScript</strong>
+                                    </li>
+                                    <li>بهینه‌سازی عملکرد رندر با <strong>React.memo</strong>، <strong>useMemo</strong> و <strong>Code
+                                        Splitting</strong></li>
+                                        <li>پیاده‌سازی <strong>Server-Side Rendering (SSR)</strong> و <strong>Static Site Generation
+                                            (SSG)</strong> با <strong>Next.js</strong></li>
+                                            <li>طراحی سیستم Design System داخلی با <strong>Tailwind CSS</strong> و کامپوننت‌های اشتراکی</li>
+                                            <li>مدیریت State پیچیده با <strong>Redux Toolkit</strong> و <strong>React Query</strong></li>
+                                            <li>نوشتن تست‌های واحد و یکپارچگی با <strong>Jest</strong> و <strong>React Testing Library</strong>
+                                            </li>
+                                            <li>همکاری نزدیک با تیم بک‌اند در طراحی <strong>REST API</strong> و یکپارچه‌سازی</li>
+                                        </ul>
+                                        <div class="exp-tags">
+                                            <span class="exp-tag">React 18</span>
+                                            <span class="exp-tag">Next.js</span>
+                                            <span class="exp-tag">TypeScript</span>
+                                            <span class="exp-tag">Tailwind CSS</span>
+                                            <span class="exp-tag">Redux Toolkit</span>
+                                            <span class="exp-tag">React Query</span>
+                                            <span class="exp-tag">SSR · SSG</span>
+                                            <span class="exp-tag">Jest</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="exp-card">
+                                        <div class="exp-company">استارتاپ دیجیتال مارکتینگ پارس وب</div>
+                                        <div class="exp-role">توسعه‌دهنده فرانت‌اند — Vue.js / Nuxt.js</div>
+                                        <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱ – ۱۴۰۲</span>
+                                        <ul class="exp-bullets mt-2">
+                                            <li>توسعه پلتفرم مدیریت کمپین‌های تبلیغاتی با <strong>Vue 3</strong> و <strong>Composition
+                                                API</strong></li>
+                                                <li>پیاده‌سازی صفحات SEO-Friendly با <strong>Nuxt.js</strong> و بهینه‌سازی Core Web Vitals</li>
+                                                <li>ساخت کامپوننت‌های تعاملی با <strong>Chart.js</strong> و <strong>D3.js</strong> برای نمودارهای
+                                                    آماری</li>
+                                                    <li>مدیریت وضعیت اپلیکیشن با <strong>Pinia</strong> و بهبود جریان داده</li>
+                                                    <li>یکپارچه‌سازی <strong>WebSocket</strong> برای نمایش داده‌های Real-time</li>
+                                                    <li>پیاده‌سازی احراز هویت با <strong>JWT</strong> و مدیریت Refresh Token</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">Vue 3</span>
+                                                    <span class="exp-tag">Nuxt.js</span>
+                                                    <span class="exp-tag">Composition API</span>
+                                                    <span class="exp-tag">Pinia</span>
+                                                    <span class="exp-tag">Chart.js</span>
+                                                    <span class="exp-tag">WebSocket</span>
+                                                    <span class="exp-tag">JWT</span>
+                                                    <span class="exp-tag">SEO</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">شرکت توسعه نرم‌افزار ایده‌پردازان</div>
+                                                <div class="exp-role">توسعه‌دهنده جونیور فرانت‌اند — JavaScript / React</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۰ – ۱۴۰۱</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>پیاده‌سازی رابط کاربری سایت‌های تجاری با <strong>HTML5</strong>، <strong>CSS3</strong> و
+                                                        <strong>JavaScript</strong>
+                                                    </li>
+                                                    <li>تبدیل طرح‌های Figma به کامپوننت‌های React با دقت Pixel Perfect</li>
+                                                    <li>کار با <strong>REST API</strong> و نمایش داده‌های پویا با <strong>Axios</strong></li>
+                                                    <li>پیاده‌سازی Responsive Design برای دستگاه‌های مختلف</li>
+                                                    <li>استفاده از <strong>Git</strong> و <strong>GitHub</strong> در فرآیند توسعه تیمی</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">React</span>
+                                                    <span class="exp-tag">JavaScript</span>
+                                                    <span class="exp-tag">HTML5 · CSS3</span>
+                                                    <span class="exp-tag">Axios</span>
+                                                    <span class="exp-tag">Figma</span>
+                                                    <span class="exp-tag">Responsive Design</span>
+                                                    <span class="exp-tag">Git</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card mb-0">
+                                                <div class="exp-company">فریلنسر — پروژه‌های شخصی و سفارشی</div>
+                                                <div class="exp-role">توسعه‌دهنده فرانت‌اند مستقل</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۳۹۹ – اکنون</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>طراحی و توسعه بیش از <strong>۱۵ وب‌سایت</strong> و اپلیکیشن سفارشی برای کسب‌وکارهای کوچک و متوسط
+                                                    </li>
+                                                    <li>ساخت فروشگاه‌های آنلاین با تجربه کاربری عالی و سرعت بارگذاری بالا</li>
+                                                    <li>ارائه خدمات نگهداری، به‌روزرسانی و Refactoring کد برای مشتریان قدیمی</li>
+                                                    <li>مشاوره فنی در انتخاب فناوری مناسب برای پروژه‌های استارتاپی</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">React</span>
+                                                    <span class="exp-tag">Vue.js</span>
+                                                    <span class="exp-tag">Next.js</span>
+                                                    <span class="exp-tag">Tailwind CSS</span>
+                                                    <span class="exp-tag">Node.js</span>
+                                                    <span class="exp-tag">Freelance</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Projects -->
+                                        <div class="resume-section">
+                                            <div class="resume-section-title"><i class="bi bi-kanban-fill"></i> پروژه‌های شاخص</div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">اپلیکیشن پیش‌بینی آب‌و‌هوا</div>
+                                                <div class="exp-role">توسعه‌دهنده فرانت‌اند — پروژه شخصی</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>ساخت اپلیکیشن کامل پیش‌بینی آب‌وهوا با دریافت داده از <strong>OpenWeatherMap API</strong></li>
+                                                    <li>نمایش داده‌های دما، رطوبت، باد و پیش‌بینی ۷ روزه با انیمیشن‌های زیبا</li>
+                                                    <li>پشتیبانی از جستجو بر اساس نام شهر و <strong>Geolocation API</strong></li>
+                                                    <li>رابط کاربری واکنش‌گرا با <strong>Tailwind CSS</strong> و تجربه کاربری روان</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">React</span>
+                                                    <span class="exp-tag">TypeScript</span>
+                                                    <span class="exp-tag">Tailwind CSS</span>
+                                                    <span class="exp-tag">REST API</span>
+                                                    <span class="exp-tag">Geolocation</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">پلتفرم مدیریت وظایف تیمی (Task Manager)</div>
+                                                <div class="exp-role">Full Stack Developer — پروژه تیمی</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۲</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>طراحی و پیاده‌سازی فرانت‌اند کامل با <strong>Vue 3</strong> و <strong>TypeScript</strong></li>
+                                                    <li>ساخت بک‌اند سبک با <strong>Node.js</strong> و <strong>Fastify</strong> و احراز هویت با
+                                                        <strong>JWT</strong>
+                                                    </li>
+                                                    <li>ساختار Drag &amp; Drop برای مدیریت وظایف با <strong>VueDraggable</strong></li>
+                                                    <li>ارتباط Real-time بین اعضای تیم با <strong>WebSocket</strong></li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">Vue 3</span>
+                                                    <span class="exp-tag">TypeScript</span>
+                                                    <span class="exp-tag">Node.js</span>
+                                                    <span class="exp-tag">Fastify</span>
+                                                    <span class="exp-tag">JWT</span>
+                                                    <span class="exp-tag">WebSocket</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card">
+                                                <div class="exp-company">فروشگاه آنلاین (E-Commerce)</div>
+                                                <div class="exp-role">توسعه‌دهنده فرانت‌اند — پروژه فریلنس</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۱</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>طراحی فروشگاه اینترنتی کامل با <strong>Next.js</strong> و <strong>Tailwind CSS</strong></li>
+                                                    <li>پیاده‌سازی سبد خرید، صفحه پرداخت و مدیریت سفارش با وضعیت‌های مختلف</li>
+                                                    <li>بهینه‌سازی SEO با <strong>Server-Side Rendering</strong> و Meta Tags پویا</li>
+                                                    <li>امتیاز بالا در <strong>Google PageSpeed Insights</strong> (۹۵+)</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">Next.js</span>
+                                                    <span class="exp-tag">Tailwind CSS</span>
+                                                    <span class="exp-tag">SSR</span>
+                                                    <span class="exp-tag">SEO</span>
+                                                    <span class="exp-tag">PageSpeed 95+</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="exp-card mb-0">
+                                                <div class="exp-company">داشبورد تحلیل داده سازمانی</div>
+                                                <div class="exp-role">توسعه‌دهنده فرانت‌اند — پروژه سازمانی</div>
+                                                <span class="exp-period"><i class="bi bi-calendar3 me-1"></i> ۱۴۰۳</span>
+                                                <ul class="exp-bullets mt-2">
+                                                    <li>پیاده‌سازی داشبورد تحلیل داده با نمودارهای پیشرفته <strong>Chart.js</strong> و
+                                                        <strong>ECharts</strong>
+                                                    </li>
+                                                    <li>نمایش آمار و گزارش‌های لحظه‌ای با قابلیت فیلتر و جستجوی پیشرفته</li>
+                                                    <li>صادرکردن گزارش‌ها به فرمت <strong>PDF</strong> و <strong>Excel</strong></li>
+                                                    <li>پشتیبانی از <strong>Dark Mode</strong> و قابلیت شخصی‌سازی رابط کاربری</li>
+                                                </ul>
+                                                <div class="exp-tags">
+                                                    <span class="exp-tag">Vue 3</span>
+                                                    <span class="exp-tag">Chart.js</span>
+                                                    <span class="exp-tag">ECharts</span>
+                                                    <span class="exp-tag">PDF Export</span>
+                                                    <span class="exp-tag">Dark Mode</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Skills + Education -->
+                                        <div class="row g-4">
+                                            <div class="col-lg-7">
+                                                <div class="resume-section h-100">
+                                                    <div class="resume-section-title"><i class="bi bi-cpu-fill"></i> مهارت‌ها</div>
+
+                                                    <div class="skill-group-title"><i class="bi bi-window me-1"></i> فرانت‌اند (پیشرفته)</div>
+                                                    <div class="skill-tags">
+                                                        <span class="skill-tag">JavaScript</span>
+                                                        <span class="skill-tag">TypeScript</span>
+                                                        <span class="skill-tag">React</span>
+                                                        <span class="skill-tag">Vue.js</span>
+                                                        <span class="skill-tag">Next.js</span>
+                                                        <span class="skill-tag">Nuxt.js</span>
+                                                        <span class="skill-tag">HTML5</span>
+                                                        <span class="skill-tag">CSS3</span>
+                                                    </div>
+
+                                                    <div class="skill-group-title"><i class="bi bi-server me-1"></i> بک‌اند (متوسط)</div>
+                                                    <div class="skill-tags">
+                                                        <span class="skill-tag">Node.js</span>
+                                                        <span class="skill-tag">Fastify</span>
+                                                        <span class="skill-tag">C++</span>
+                                                        <span class="skill-tag">Java</span>
+                                                    </div>
+
+                                                    <div class="skill-group-title"><i class="bi bi-box me-1"></i> کتابخانه‌ها و ابزارها</div>
+                                                    <div class="skill-tags">
+                                                        <span class="skill-tag-lib">Tailwind CSS</span>
+                                                        <span class="skill-tag-lib">Redux Toolkit</span>
+                                                        <span class="skill-tag-lib">Pinia</span>
+                                                        <span class="skill-tag-lib">React Query</span>
+                                                        <span class="skill-tag-lib">Axios</span>
+                                                        <span class="skill-tag-lib">JWT</span>
+                                                        <span class="skill-tag-lib">Chart.js</span>
+                                                        <span class="skill-tag-lib">D3.js</span>
+                                                        <span class="skill-tag-lib">WebSocket</span>
+                                                        <span class="skill-tag-lib">Jest</span>
+                                                        <span class="skill-tag-lib">GIT</span>
+                                                        <span class="skill-tag-lib">Docker</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-5">
+                                                <div class="resume-section mb-4">
+                                                    <div class="resume-section-title"><i class="bi bi-mortarboard-fill"></i> تحصیلات</div>
+                                                    <div class="edu-item">
+                                                        <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+                                                        <div>
+                                                            <div class="fw-bold" style="font-size:1rem">کارشناسی مهندسی کامپیوتر</div>
+                                                            <div style="color:#0f6cbd;font-size:.9rem">دانشگاه اصفهان</div>
+                                                            <div style="font-size:.82rem;color:#888">۱۴۰۰ – در حال تحصیل</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="resume-section mb-4">
+                                                    <div class="resume-section-title"><i class="bi bi-person-badge-fill"></i> مشخصات فردی</div>
+                                                    <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;line-height:2.1">
+                                                        <li><i class="bi bi-calendar3 me-2" style="color:#0f6cbd"></i> سن: <strong>۲۲ سال</strong></li>
+                                                        <li><i class="bi bi-gender-male me-2" style="color:#0f6cbd"></i> جنسیت: <strong>مرد</strong>
+                                                        </li>
+                                                        <li><i class="bi bi-geo-alt me-2" style="color:#0f6cbd"></i> شهر: <strong>اصفهان</strong></li>
+                                                        <li><i class="bi bi-heart me-2" style="color:#0f6cbd"></i> وضعیت تأهل: <strong>مجرد</strong>
+                                                        </li>
+                                                        <li><i class="bi bi-shield-check me-2" style="color:#0f6cbd"></i> خدمت سربازی: <strong>معافیت
+                                                            تحصیلی</strong></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="resume-section">
+                                                        <div class="resume-section-title"><i class="bi bi-translate"></i> زبان‌ها</div>
+                                                        <div class="lang-bar-wrap">
+                                                            <div class="lang-label">فارسی <small class="text-muted">(زبان مادری)</small></div>
+                                                            <div class="progress" style="height:8px;border-radius:8px">
+                                                                <div class="progress-bar" style="width:100%;background:#0f6cbd"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="lang-bar-wrap">
+                                                            <div class="lang-label">انگلیسی <small class="text-muted">(متوسط)</small></div>
+                                                            <div class="progress" style="height:8px;border-radius:8px">
+                                                                <div class="progress-bar" style="width:60%;background:#0f6cbd"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </section>
+
+                                    <!-- Floating Download Button -->
+                                    <a href="/home/downloadsepehrshiraziresume" class="download-btn" title="دانلود رزومه PDF">
+                                        <i class="bi bi-file-earmark-pdf-fill" style="font-size:1.2rem"></i>
+                                        SepehrShirazi.pdf
+                                    </a>
