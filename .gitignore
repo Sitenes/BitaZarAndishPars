@@ -366,22 +366,5 @@ FodyWeavers.xsd
 # Large binary assets - excluded from git tracking
 # Use a CDN or Git LFS for these files
 # -----------------------------------------------
-
-# Videos (too large for git)
-*.mp4
-*.webm
-*.avi
-*.mov
-*.mkv
-
-# PDF files (CV/Resume documents)
-BitaZarAndishPars/wwwroot/assets/img/person/*.pdf
-
-# Large portfolio screenshots (localhost dev screenshots)
-BitaZarAndishPars/wwwroot/assets/img/portfolio/profile-shakhsi/localhost_*.png
-
-# Large bizap UI screenshots (> 1MB)
-BitaZarAndishPars/wwwroot/assets/img/portfolio/bizap/*%20*.png
-
 # Publish output
-BitaZarAndishPars/bin/Publish/
+BitaZarAndishPars/bin/
