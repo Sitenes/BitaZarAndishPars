@@ -117,6 +117,29 @@
         .hero, .about, .services, .skills, .resume, .portfolio, .team, .faq, .contact {
             visibility: visible;
         }
+        html[lang="en"] body,
+html[dir="ltr"] body {
+    direction: ltr;
+    text-align: left;
+}
+
+
+
+/* اطمینان از راست‌چین بودن محتوای فارسی/عربی در حالت RTL */
+html[lang="fa"] body,
+html[lang="ar"] body,
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* استایل دکمه‌های زبان */
+.lang-btn.active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
     </style>
     
     @await RenderSectionAsync("Heads", required: false)
@@ -150,8 +173,8 @@
             <!-- Language Switcher -->
             <div class="lang-switcher" aria-label="Language switcher">
                 <button class="lang-btn" data-lang="fa" onclick="SiteI18n.apply('fa')" title="فارسی">فا</button>
-                <button class="lang-btn" data-lang="en" onclick="SiteI18n.apply('en')" title="English">EN</button>
                 <button class="lang-btn" data-lang="ar" onclick="SiteI18n.apply('ar')" title="العربية">عر</button>
+                <button class="lang-btn" data-lang="en" onclick="SiteI18n.apply('en')" title="English">EN</button>
             </div>
 
         </div>
@@ -196,6 +219,63 @@
         <script src="assets/js/i18n.js" defer></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js" defer></script>
+
+<script>
+// تابع کمکی کوکی
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+const SiteDirection = {
+    currentLang: 'fa',
+
+    apply: function(lang) {
+        this.currentLang = lang;
+        const htmlRoot = document.getElementById('html-root');
+        if (lang === 'en') {
+            htmlRoot.setAttribute('dir', 'ltr');
+            htmlRoot.setAttribute('lang', 'en');
+        } else {
+            htmlRoot.setAttribute('dir', 'rtl');
+            htmlRoot.setAttribute('lang', lang === 'fa' ? 'fa' : 'ar');
+        }
+        localStorage.setItem('preferred-language', lang);
+    },
+
+    checkAndFix: function() {
+        const savedLang = getCookie('site_lang') || 'fa';
+        const htmlRoot = document.getElementById('html-root');
+        const currentDir = htmlRoot.getAttribute('dir');
+        const expectedDir = savedLang === 'en' ? 'ltr' : 'rtl';
+        
+        if (currentDir !== expectedDir) {
+            console.log('جهت صفحه اصلاح می‌شود:', savedLang);
+            this.apply(savedLang);
+            return true;
+        }
+        return false;
+    }
+};
+
+// اجرای فوری بدون هیچ رویدادی (سریع‌ترین روش)
+(function() {
+    const savedLang = getCookie('site_lang') || 'fa';
+    const htmlRoot = document.getElementById('html-root');
+    if (savedLang === 'en') {
+        htmlRoot.setAttribute('dir', 'ltr');
+        htmlRoot.setAttribute('lang', 'en');
+    }
+})();
+
+// همچنین برای اطمینان از رفرش
+window.addEventListener('pageshow', function() {
+    SiteDirection.checkAndFix();
+});
+</script>
+
         @await RenderSectionAsync("Scripts", required: false)
     </body>
 
