@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl" id="html-root">
 
 <head>
+
     <base href="/" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -20,7 +21,7 @@
     <meta property="og:description"
           content="شرکت بیتا زر اندیش پارس با تمرکز بر سامانه‌های نرم‌افزاری تحت وب و اتوماسیون‌ها، همکاری‌های موثری با دانشگاه اصفهان در سامانه جامع پژوهشی و امنیت سایبری دارد.">
     <meta property="og:image" content="~/assets/img/favicon.ico">
-    <meta property="og:url" content="https://BitaZarAndishPars.ir">
+    <meta property="og:url" content="https://bizaptech.ir">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="بیتا زر اندیش پارس - نوآوری در سامانه‌های نرم‌افزاری">
@@ -57,17 +58,17 @@
         "@@context": "https://schema.org",
         "@@type": "LocalBusiness",
         "name": "بیتا زر اندیش پارس",
-        "image": "https://BitaZarAndishPars.ir/assets/img/logo.png",
-        "telephone": ["+983134543703", "+989132042385"],
-        "email": "BitaZarAndishPars@gmail.com",
+        "image": "https://bizaptech.ir/assets/img/logo.png",
+        "telephone": ["+983137932614", "+989013348988"],
+        "email": "sitenes.team@gmail.com",
         "address": {
         "@@type": "PostalAddress",
-        "streetAddress": "میدان آزادی، دانشگاه اصفهان، مرکز رشد و فناوری، طبقه همکف، واحد ۲",
+        "streetAddress": "میدان آزادی، دانشگاه اصفهان، مرکز رشد و فناوری، طبقه همکف، واحد 17",
         "addressLocality": "اصفهان",
         "addressRegion": "اصفهان",
         "addressCountry": "IR"
         },
-        "url": "https://BitaZarAndishPars.ir",
+        "url": "https://bizaptech.ir",
         "description": "شرکت بیتا زر اندیش پارس در حوزه سامانه‌های نرم‌افزاری تحت وب و اتوماسیون‌ها فعالیت می‌کند و همکاری‌های موثری با دانشگاه اصفهان در زمینه سامانه جامع پژوهشی و اتوماسیون ساز و امنیت سایبری دارد.",
         "geo": {
         "@@type": "GeoCoordinates",
@@ -75,17 +76,58 @@
         "longitude": 51.6776
         },
         "sameAs": [
-        "https://twitter.com/BitaZarAndishPars",
-        "https://facebook.com/BitaZarAndishPars",
         "https://linkedin.com/company/BitaZarAndishPars"
         ]
         }
     </script>
+        <style>
+    /* CSS بحرانی برای نمایش سریع layout اولیه */
+    body { margin:0; font-family: Tahoma, sans-serif; visibility: visible !important; opacity: 1 !important;  }
+    .header, .footer { visibility: visible;  animation: fadeIn 0.1s ease-out; }
+    .main { min-height: 100vh;   animation: fadeIn 0.1s ease-out;}
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+        /* حذف تمام انیمیشن‌ها و تاخیرها */
+        * {
+            animation-duration: 0s !important;
+            animation-delay: 0s !important;
+            transition-duration: 0s !important;
+            transition-delay: 0s !important;
+        }
+        
+        [data-aos], [data-aos-delay] {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        
+        .fade-up, .fade-down, .fade-left, .fade-right, .zoom-in, .zoom-out {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        
+        /* نمایش فوری محتوا */
+        body {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        /* استایل‌های پایه برای نمایش سریع */
+        .hero, .about, .services, .skills, .resume, .portfolio, .team, .faq, .contact {
+            visibility: visible;
+        }
+    </style>
+    
     @await RenderSectionAsync("Heads", required: false)
 </head>
 
 <body class="index-page">
-
+    <script>
+            document.documentElement.style.visibility = 'visible';
+            // یا کلاس مخصوص برای نمایش تدریجی
+            document.body.classList.add('page-loaded');
+    </script>
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -138,90 +180,23 @@
 
         <!-- Scroll Top -->
         <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i>
+        </a>
 
-            <!-- Vendor JS Files (defer for faster page load) -->
-            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-            <script src="assets/vendor/aos/aos.js" defer></script>
-            <script src="assets/vendor/waypoints/noframework.waypoints.js" defer></script>
-            <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
-            <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
-            <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
-            <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
+        <!-- Vendor JS Files (defer for faster page load) -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+        <script src="assets/vendor/aos/aos.js" defer></script>
+        <script src="assets/vendor/waypoints/noframework.waypoints.js" defer></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
+        <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
 
-            <!-- i18n (must load before main.js) -->
-            <script src="assets/js/i18n.js" defer></script>
-            <!-- Main JS File -->
-            <script src="assets/js/main.js" defer></script>
-            @await RenderSectionAsync("Scripts", required: false)
-        </body>
+        <!-- i18n (must load before main.js) -->
+        <script src="assets/js/i18n.js" defer></script>
+        <!-- Main JS File -->
+        <script src="assets/js/main.js" defer></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 
-    </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BitaZarAndishPars</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BitaZarAndishPars.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BitaZarAndishPars</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-           
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BitaZarAndishPars - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
 </html>
- *@
