@@ -26,6 +26,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+      
+      - name: Clean publish folder
+        run: |
+          rm -rf out
+          mkdir -p out
 
       - name: Publish
         run: |
